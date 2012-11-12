@@ -1,4 +1,6 @@
 HackerNewsClone::Application.routes.draw do
+  devise_for :users
+
   root :to => 'links#index'
 
   resources :links, only: [:index, :new, :create, :show]
