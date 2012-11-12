@@ -1,0 +1,34 @@
+<p>
+  <%= @link.title %> | <%= link_to @link.url, @link.url %>
+</p>
+
+<p>
+  <% @link.comments.each do |comment| %>
+  <p>
+    <% if comment.persisted? %>
+      <%= comment.user.email %><br>
+      <%= comment.comment_text %>
+    <% end %>
+  </p>
+  <% end %>
+  
+<%= form_for [@link, @comment ||= Comment.new] do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :comment_text %>
+  </p>
+    <%= f.text_area :comment_text %>
+  
+    <%= f.submit "Submit comment" %>
+
+<% end %>

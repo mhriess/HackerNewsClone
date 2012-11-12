@@ -3,7 +3,9 @@ HackerNewsClone::Application.routes.draw do
 
   root :to => 'links#index'
 
-  resources :links, only: [:index, :new, :create, :show, :edit, :update]
+  resources :links, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :comments, only: [:create, :update, :edit]
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

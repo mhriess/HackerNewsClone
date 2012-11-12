@@ -33,4 +33,8 @@ class LinksController < ApplicationController
       render 'edit'
     end
   end
+
+  def show
+    @link = Link.find(params[:id])
+  end
 end
