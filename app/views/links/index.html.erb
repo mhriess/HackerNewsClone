@@ -1,4 +1,8 @@
 <% @links.each do |link| %>
 <p><%= link.title %> |
-<%= link_to "#{link.url}", link.url %></p>
+<%= link_to "#{link.url}", link.url %> |
+  <% if link.user == current_user %>
+    <%= link_to "Edit Link", edit_link_path(link.id) %>
+  <% end %>
+</p>
 <% end %>
