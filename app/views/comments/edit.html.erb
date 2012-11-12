@@ -1,0 +1,20 @@
+<%= form_for @comment, :url => link_comment_path(params[:link_id], @comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :comment_text %>
+  </p>
+    <%= f.text_area :comment_text %>
+  
+    <%= f.submit "Update comment" %>
+
+<% end %>

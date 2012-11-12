@@ -4,4 +4,8 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   validates :user_id,
     :presence => { :message => "You must be signed in to comment." }
+
+  def can_edit?
+    Time.now - 15.minutes < created_at
+  end 
 end

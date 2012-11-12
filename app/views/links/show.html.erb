@@ -8,6 +8,7 @@
     <% if comment.persisted? %>
       <%= comment.user.email %><br>
       <%= comment.comment_text %>
+      <%= link_to_if(current_user && comment.can_edit?, "Edit", edit_link_comment_path(@link, comment)){} %>
     <% end %>
   </p>
   <% end %>
