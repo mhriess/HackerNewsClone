@@ -10,4 +10,9 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :links
   has_many :comments
+  has_many :votes
+
+  def can_vote?(link_id)
+    !Vote.already_cast?(link_id, id)
+  end
 end
