@@ -1,8 +1,7 @@
 class LinksController < ApplicationController
   def index
     if params[:order]
-      @link = Link.all.sort_by(&:vote_count)
-      @links = Link.order("(SELECT COUNT(*) FROM VOTES where link_id = links.id) DESC;")
+      @links = Link.joins('LEFT JOIN votes ON votes.link_id = links.id GROUP BY links.id ORDER BY COUNT(*) DESC')
     else
       @links = Link.all
     end
