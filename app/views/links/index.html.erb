@@ -1,3 +1,5 @@
+<%= link_to "ORDER BY VOTES", links_path(:order => true) %>
+
 <% @links.each do |link| %>
 <p>
   <%= link_to link.title, link_path(link.id) %> |
