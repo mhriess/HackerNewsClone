@@ -8,7 +8,7 @@
     <%= link_to "Edit Link", edit_link_path(link) %>
   <% end %>
   
-  <% if current_user && link.user_id != current_user.id && current_user.can_vote?(link.id) %>
+  <% if current_user && link.user_id != current_user.id && !current_user.already_voted?(link.id) %>
     <%= link_to "^", link_votes_path(link), :method => :post %>
   <% end %>
 </p>

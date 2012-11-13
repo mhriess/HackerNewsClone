@@ -4,7 +4,7 @@ class Vote < ActiveRecord::Base
   belongs_to :user
   belongs_to :link
 
-  def self.already_cast?(link_id, user_id)
-    !Vote.find(:first, :conditions => {:link_id => link_id, :user_id => user_id}).nil?
+  def self.by_link(link)
+    where(:link_id => link)
   end
 end

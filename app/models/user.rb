@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
 
-  def can_vote?(link_id)
-    !Vote.already_cast?(link_id, id)
+  def already_voted?(link)
+    self.votes.by_link(link).exists?
   end
 end
